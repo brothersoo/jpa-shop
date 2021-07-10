@@ -11,13 +11,14 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import jpabook.jpashop.domain.Category;
+import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
-@Getter @Setter
+@Getter
 public abstract class Item {
 
   @Id
@@ -26,9 +27,36 @@ public abstract class Item {
   private Long id;
 
   private String name;
-
   private int price;
+  private int stockQuantity;
 
   @ManyToMany(mappedBy = "items")
   private List<Category> categories;
+
+  //== BUSINESS LOGIC ==//
+
+  /**
+   * stock 증가
+   */
+  public void addStock(int quantity) {
+    this.stockQuantity += quantity;
+  }
+
+  /**
+   * stock 감소
+   */
+  public void subStock(int stockQuantity) {
+    if (this.stockQuantity - stockQuantity < 0) {
+      throw new NotEnoughStockException("need more stock");
+    }
+    this.stockQuantity -= stockQuantity;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setPrice(int price) {
+    this.price = price;
+  }
 }
