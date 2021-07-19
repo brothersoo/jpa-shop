@@ -45,7 +45,7 @@ public abstract class Item {
   /**
    * stock 감소
    */
-  public void subStock(int stockQuantity) {
+  public void removeStock(int stockQuantity) {
     if (this.stockQuantity - stockQuantity < 0) {
       throw new NotEnoughStockException("need more stock");
     }
