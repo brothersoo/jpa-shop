@@ -89,6 +89,7 @@ public class Order {
     for (OrderItem orderItem : this.orderItems) {
       orderItem.cancel();
     }
+    this.setStatus(OrderStatus.CANCEL);
   }
 
   //== 조회 로직 ==//

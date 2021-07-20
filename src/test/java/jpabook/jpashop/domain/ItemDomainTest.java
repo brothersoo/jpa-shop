@@ -24,7 +24,7 @@ public class ItemDomainTest {
     Album 앨범 = new Album();
     앨범.addStock(100);
     int prevStockQuantity = 앨범.getStockQuantity();
-    앨범.subStock(10);
+    앨범.removeStock(10);
     assertThat(prevStockQuantity - 10).isEqualTo(앨범.getStockQuantity());
   }
 
@@ -34,6 +34,6 @@ public class ItemDomainTest {
     Album 앨범 = new Album();
     앨범.addStock(100);
     int prevStockQuantity = 앨범.getStockQuantity();
-    org.junit.jupiter.api.Assertions.assertThrows(NotEnoughStockException.class, () -> 앨범.subStock(1000));
+    org.junit.jupiter.api.Assertions.assertThrows(NotEnoughStockException.class, () -> 앨범.removeStock(1000));
   }
 }
