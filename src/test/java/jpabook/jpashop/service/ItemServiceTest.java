@@ -7,6 +7,7 @@ import jpabook.jpashop.domain.item.Album;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.domain.item.Movie;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -62,5 +63,26 @@ public class ItemServiceTest {
     assertThat(상품리스트.contains(앨범)).isTrue();
     assertThat(상품리스트.contains(책)).isTrue();
     assertThat(상품리스트.contains(영화)).isTrue();
+  }
+
+  @Test
+  @DisplayName("상품 정보 변경")
+  public void changeItemInfo() {
+    Book 상품 = new Book();
+    상품.setName("Clean Code");
+    상품.setPrice(25000);
+    상품.setAuthor("none");
+    상품.setIsbn("12321");
+    상품.setStockQuantity(100);
+    상품서비스.saveItem(상품);
+
+    상품서비스.updateItem(상품.getId(), "Changed", 0, "Changed", "Changed", 0);
+
+    Book 검색상품 = (Book) 상품서비스.findOne(상품.getId());
+    assertThat(검색상품.getName()).isEqualTo("Changed");
+    assertThat(검색상품.getPrice()).isZero();
+    assertThat(검색상품.getAuthor()).isEqualTo("Changed");
+    assertThat(검색상품.getIsbn()).isEqualTo("Changed");
+    assertThat(검색상품.getStockQuantity()).isZero();
   }
 }
