@@ -5,6 +5,7 @@ import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
   private final MemberService memberService;
@@ -38,6 +40,7 @@ public class MemberController {
     try {
       memberService.join(member);
     } catch (IllegalStateException e) {
+      log.error(e.getMessage());
       return "/members/createMemberForm";
     }
 
