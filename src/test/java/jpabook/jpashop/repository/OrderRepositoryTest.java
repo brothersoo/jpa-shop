@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import javax.persistence.EntityManager;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderSearch;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
