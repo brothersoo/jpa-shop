@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
-@Getter @Setter
+@Getter
 public abstract class Item {
 
   @Id
@@ -49,5 +49,12 @@ public abstract class Item {
       throw new NotEnoughStockException("need more stock");
     }
     this.stockQuantity -= stockQuantity;
+  }
+
+  protected void setItemInfo(Long id, String name, Integer price, Integer stockQuantity) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.stockQuantity = stockQuantity;
   }
 }

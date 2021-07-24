@@ -24,7 +24,7 @@ public class OrderRepositoryTest {
   @Autowired OrderService orderService;
 
   static Member member1, member2;
-  static Item item;
+  static Book item;
 
   static OrderSearch orderSearch1, orderSearch2, orderSearch3, orderSearch4;
 
@@ -124,9 +124,7 @@ public class OrderRepositoryTest {
 
   void setItem() {
     item = new Book();
-    item.setPrice(10000);
-    item.setName("book1");
-    item.addStock(1000);
+    item.setBookInfo(null, "book1", 10000, null, null, 1000);
     em.persist(item);
   }
 }

@@ -24,12 +24,7 @@ public class ItemService {
   public void updateItem(Long id, String name, Integer price, String author, String isbn,
       Integer quantity) {
     Book item = (Book) itemRepository.findOne(id);
-    item.setId(id);
-    item.setName(name);
-    item.setPrice(price);
-    item.setAuthor(author);
-    item.setIsbn(isbn);
-    item.setStockQuantity(quantity);
+    item.setBookInfo(id, name, price, author, isbn, quantity);
   }
 
   public Item findOne(Long id) {

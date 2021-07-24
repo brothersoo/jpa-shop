@@ -26,10 +26,7 @@ public class ItemRepositoryTest {
   @DisplayName("상품 저장 - 앨범")
   public void saveAlbum() {
     Album 앨범 = new Album();
-    앨범.setName("Abby road");
-    앨범.setPrice(150000);
-    앨범.setArtist("The Beatles");
-    앨범.setEtc("Greatest songs");
+    앨범.setAlbumInfo(null, "Abby road", 150000, "The Beatles", "Greatest songs", 100);
 
     상품저장소.save(앨범);
     assertThat(상품저장소.findAll().contains(앨범)).isTrue();
@@ -39,22 +36,13 @@ public class ItemRepositoryTest {
   @DisplayName("상품 모두 찾기")
   public void findAllItems() {
     Album 앨범 = new Album();
-    앨범.setName("Abby road");
-    앨범.setPrice(150000);
-    앨범.setArtist("The Beatles");
-    앨범.setEtc("Greatest songs");
+    앨범.setAlbumInfo(null, "Abby road", 150000, "The Beatles", "Greatest songs", 100);
     상품저장소.save(앨범);
     Book 책 = new Book();
-    책.setName("Harris and the tortoise");
-    책.setPrice(12000);
-    책.setAuthor("Anonymous");
-    책.setIsbn("1234-5678");
+    책.setBookInfo(null, "Harris and the tortoise", 12000, "Anonymous", "1234-5678", 2000);
     상품저장소.save(책);
     Movie 영화 = new Movie();
-    영화.setName("About Time");
-    영화.setPrice(8000);
-    영화.setActor("Rachel McAdams");
-    영화.setDirector("Richard Curtis");
+    영화.setMovieInfo(null, "About Time", 8000, "Rachel McAdams", "Richard Curtis", 1000000);
     상품저장소.save(영화);
 
     List<Item> 상품리스트 = 상품저장소.findAll();

@@ -7,9 +7,16 @@ import lombok.Setter;
 
 @Entity
 @DiscriminatorValue(value = "B")
-@Getter @Setter
+@Getter
 public class Book extends Item{
 
   private String author;
   private String isbn;
+
+  public void setBookInfo(Long id, String name, Integer price, String author, String isbn,
+      Integer quantity) {
+    super.setItemInfo(id, name, price, quantity);
+    this.author = author;
+    this.isbn = isbn;
+  }
 }
